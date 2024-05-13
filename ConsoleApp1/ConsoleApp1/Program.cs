@@ -26,30 +26,28 @@ namespace ConsoleApp1
         async static Task Update(ITelegramBotClient botClient, Update update, CancellationToken arg3)
         {
             var message = update.Message;
-
+            var KB = new List<KeyboardButton>();
 
             if (message.Text.ToLower().Contains("start"))
             {
-                var replyKeyboard = new ReplyKeyboardMarkup(new List<KeyboardButton[]>()
                 {
-                    new KeyboardButton[]
-                    {
-                        new KeyboardButton("Привет"),
-                        new KeyboardButton("Пока"),
-                    },
-                    new KeyboardButton[]
-                    {
-                        new KeyboardButton("Позвони мне")
-                    }
-                })
+                    KB.Add(new KeyboardButton("Гойда"));
+                    KB.Add(new KeyboardButton("Пиво пить :D"));
+                }
                 {
                     ResizeKeyboard = true,
                 };
-                await botClient.SendTextMessageAsync(message.Chat.Id, "Добро пожаловать в игру Лабиринт проклятых душ, для начала игры напишите гойда", replyMarkup: replyKeyboard);
+                await botClient.SendTextMessageAsync(message.Chat.Id, "Добро пожаловать в игру Лабиринт проклятых душ, для начала игры напишите гойда", replyMarkup: new ReplyKeyboardMarkup(KB));
+                KB.Clear();
             }
             if (message.Text.ToLower().Contains("гойда"))
             {
-                await botClient.SendTextMessageAsync(message.Chat.Id, "Ты просыпаешся в темном и запутанном лабиринте, ощущая сильное беспокойство и страх. У тебя нет никаких воспоминаний о том, кто ты такой и как зддесь оказался. Вокруг тебя стены лабиринта, выглядящие совершенно непроницаемыми, но на них видны странные символы и вырезанные пазлы.");
+                {
+                    KB.Add(new KeyboardButton("ЗА ПУТИНА!!!!!!!!!!!!!!!!"));
+                    KB.Add(new KeyboardButton("Я ХОЧУ, НА СВО"));
+                }
+                await botClient.SendTextMessageAsync(message.Chat.Id, "Ты просыпаешся в темном и запутанном лабиринте, ощущая сильное беспокойство и страх. У тебя нет никаких воспоминаний о том, кто ты такой и как зддесь оказался. Вокруг тебя стены лабиринта, выглядящие совершенно непроницаемыми, но на них видны странные символы и вырезанные пазлы.", replyMarkup: new ReplyKeyboardMarkup(KB));
+
             }
             if (message.Text.ToLower().Contains("осмотреться в комнате"))
             {
