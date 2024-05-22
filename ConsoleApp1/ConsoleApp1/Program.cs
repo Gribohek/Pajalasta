@@ -36,12 +36,12 @@ namespace ConsoleApp1
                 await botClient.SendTextMessageAsync(message.Chat.Id, "Добро пожаловать в мою замечательную игру! Ты находишься в загадочном особняке, где тебе предстоит пройти через несколько комнат и разгадать головоломки. Готов начать свое приключение?", replyMarkup: new ReplyKeyboardMarkup(KB));
                 KB.Clear();
             }
-            else if (message.Text.ToLower().Contains("конечно")|| message.Text.ToLower().Contains("да"))
+            else if (message.Text.ToLower().Contains("конечно")|| message.Text.ToLower().Contains("да") || message.Text.ToLower().Contains("готов") || message.Text.ToLower().Contains("разумеется") || message.Text.ToLower().Contains("естественно"))
             {
                 {
                     KB.Add(new KeyboardButton("В первую"));
                 }
-                await botClient.SendTextMessageAsync(message.Chat.Id, "Перед тобой пять комнат. Выбери, в какую ты хочешь пойти первой.", replyMarkup: new ReplyKeyboardMarkup(KB));
+                await botClient.SendTextMessageAsync(message.Chat.Id, "Перед тобой три комнаты. Выбери, в какую ты хочешь пойти первой.", replyMarkup: new ReplyKeyboardMarkup(KB));
                 KB.Clear();
             }
          
